@@ -94,13 +94,11 @@ import os # OSが持つ環境変数OPENAI_API_KEYにAPIを入力するためにo
 API_KEY = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=API_KEY)
 
-
 # chatGPTにリクエストするためのメソッドを設定。引数には書いてほしい内容と文章のテイストと最大文字数を指定
 def run_gpt(content_text_to_gpt,content_kind_of_to_gpt,content_maxStr_to_gpt):
     # リクエスト内容を決める
     request_to_gpt = f"{content_text_to_gpt} {content_maxStr_to_gpt} {content_kind_of_to_gpt}"
 
-    
     # 決めた内容を元にclient.chat.completions.createでchatGPTにリクエスト。オプションとしてmodelにAIモデル、messagesに内容を指定
     response =  client.chat.completions.create(
         model="gpt-4o-mini",
