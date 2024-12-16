@@ -9,10 +9,10 @@ st.write("天気アプリ")
 # 選択肢を作成
 city_code_list = {
     "盛岡市":"030010",
+    "東京":"130010"
 }
-# 選択肢のデフォルトを設定
-city_code_index = "盛岡市"
-city_code_index = st.selectbox("地域を選んでください。",city_code_list.keys()) # 選択肢のキーをst.selectboxで選択し、city_code_indexに代入
+
+city_code_index = st.selectbox("地域を選んでください。", options=list(city_code_list.keys()), index=0)
 city_code = city_code_list[city_code_index] # 選択したキーからAPIのリクエストに使うcityコードに変換し、city_codeに代入
 
 url = "https://weather.tsukumijima.net/api/forecast/city/" + city_code # APIにリクエストするURLを作成
