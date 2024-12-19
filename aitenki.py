@@ -128,5 +128,3 @@ content_maxStr_to_gpt = "4"
 
 output_content_text = run_gpt(content_text_to_gpt,content_kind_of_to_gpt,content_maxStr_to_gpt)
 st.write(output_content_text)
-
-st.text
