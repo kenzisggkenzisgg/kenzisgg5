@@ -25,14 +25,17 @@ now_hour = datetime.now().hour  # 現在の天気情報取得のために、現�
 
 
 # 天気の情報を0-6時、6-12時、12-18時、18-24時の4つに分けて降水確率を取得
-if 0 <= now_hour < 6:
-    weather_now = weather_json['forecasts'][0]['chanceOfRain']['T00_06']
-elif 6 <= now_hour < 12:
-    weather_now = weather_json['forecasts'][0]['chanceOfRain']['T06_12']
-elif 12 <= now_hour < 18:
-    weather_now = weather_json['forecasts'][0]['chanceOfRain']['T12_18']
-else:
-    weather_now = weather_json['forecasts'][0]['chanceOfRain']['T18_24']
+try:
+    if 0 <= now_hour < 6:
+        weather_now = weather_json['forecasts'][0]['chanceOfRain'].get('T00_06', "データなし")
+    elif 6 <= now_hour < 12:
+        weather_now = weather_json['forecasts'][0]['chanceOfRain'].get('T06_12', "データなし")
+    elif 12 <= now_hour < 18:
+        weather_now = weather_json['forecasts'][0]['chanceOfRain'].get('T12_18', "データなし")
+    else:
+        weather_now = weather_json['forecasts'][0]['chanceOfRain'].get('T18_24', "データなし")
+except KeyError:
+    weather_now = "データなし"
 
 # 現在時刻の降水確率を表示
 weather_now_text = "現在の降水確率 : " + weather_now
